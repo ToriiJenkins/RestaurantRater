@@ -29,5 +29,7 @@ namespace RestaurantRater.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<RestaurantRater.Models.Restaurant> Restaurants { get; set; }
     }
 }

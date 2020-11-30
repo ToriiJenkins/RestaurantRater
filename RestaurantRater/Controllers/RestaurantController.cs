@@ -12,7 +12,8 @@ namespace RestaurantRater.Controllers
 {
     public class RestaurantController : Controller
     {
-        private RestaurantDbContext _db = new RestaurantDbContext();
+        public RestaurantDbContext _db = new RestaurantDbContext();
+
         // GET: Restaurant/Index
         public ActionResult Index()
         {
@@ -99,6 +100,20 @@ namespace RestaurantRater.Controllers
             return View(restaurant);
         }
        
+        //GET: Restaurant/Details/{id}
+        public ActionResult Details (int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Restaurant restaurant = _db.Restaraunts.Find(id);
+            if (restaurant == null)
+            {
+                return HttpNotFound();
+            }
+            return View(restaurant);
+        }
 
     }
 
